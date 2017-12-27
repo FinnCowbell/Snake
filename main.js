@@ -62,6 +62,11 @@ var snake = {
   }
 }
 
+function format(){
+  top.style.paddingLeft = (window.innerWidth / 2 - c.width / 2 - 20) + "px"; //formatting
+  background.width = window.innerWidth;
+  background.height = window.innerHeight;
+  }
 
 function tailPiece(x, y, order) {
   this.x = x;
@@ -103,9 +108,6 @@ var fruit = {
 
 
 function gameLoop() {
-  top.style.paddingLeft = (window.innerWidth / 2 - c.width / 2 - 20) + "px"; //formatting
-  background.width = window.innerWidth;
-  background.height = window.innerHeight;
   ctx.clearRect(0, 0, c.width, c.height); //clear canvas
   snake.update();
   if (snake.tail.length != 0) {
@@ -117,6 +119,9 @@ function gameLoop() {
   //update score
   score.innerHTML = "Score: " + s;
 }
+window.addEventListener('resize', function(){
+	format();
+})
 document.addEventListener("keydown", function(event) {
   switch (event.keyCode) {
     case 37:
@@ -143,4 +148,5 @@ document.addEventListener("keydown", function(event) {
       break;
   }
 })
+format();
 setInterval(gameLoop, 125);
