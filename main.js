@@ -1,3 +1,4 @@
+window.onload function(){
 var c = document.getElementById('canvas'); //canvas html element
 var background = document.getElementById('background');
 var top = document.getElementById('top');
@@ -150,3 +151,4 @@ document.addEventListener("keydown", function(event) {
 })
 format();
 setInterval(gameLoop, 125);
+}
