@@ -96,7 +96,7 @@ var fruit = {
   x: (Math.floor(Math.random() * c.width / size) * size),
   y: (Math.floor(Math.random() * c.height / size) * size),
   update: function() {
-    ctx.fillStyle = "#ffcef3"; //Redraw Fruit
+    ctx.fillStyle = "Tomato"; //Redraw Fruit
     ctx.fillRect(fruit.x + size / 4, fruit.y + size / 4, size / 2, size / 2);
   }
 }
