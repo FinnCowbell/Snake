@@ -1,0 +1,21 @@
+    canvas {
+      border: 10px double #AAAACC;
+      background-color: #CCCCFF;
+    }
+    
+    #background {
+      background: linear-gradient(to right, #ff99e7, #ffcef3);
+    }
+    
+    #top {
+      padding-left:
+    }
+    
+    #score {
+      font-family: "Comic Sans MS";
+      font-size: 24px;
+    }
+    
+    #center {
+      background-color: blue;
+    }
