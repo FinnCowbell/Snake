@@ -1,4 +1,4 @@
--document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 var c = document.getElementById('canvas'); //canvas html element
 var top = document.getElementById('top');
 var ctx = c.getContext('2d');
@@ -148,4 +148,4 @@ document.addEventListener("keydown", function(event) {
 })
 format();
 setInterval(gameLoop, 125);
--}, false);
+}, false);
