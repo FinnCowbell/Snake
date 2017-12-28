@@ -55,6 +55,7 @@ var snake = {
       fruit.y = (Math.floor(Math.random() * c.height / size) * size);
       fruit.x = (Math.floor(Math.random() * c.width / size) * size);
       s++;
+      score.innerHTML = "<b> Score: " + s + "</b>";  //update score
       if (snake.tail.length == 0) {
         snake.tail.push(new tailPiece(snake.oldX, snake.oldY, s - 1))
       } else {
@@ -92,6 +93,7 @@ function tailPiece(x, y, order) {
       snake.tail = [];
       s = 0;
       snake.d = "left";
+      score.innerHTML = "<b> Score: " + s + "</b>";  //update score
     }
     ctx.fillStyle = "ff99e7";
     ctx.fillRect(this.x, this.y, size, size);
@@ -118,7 +120,6 @@ function gameLoop() {
     }
   }
   fruit.update();
-  score.innerHTML = "Score: " + s;  //update score
 	if(snake.input && snake.nd != "null"){
   	snake.d = snake.nd;
     snake.nd = "null";
