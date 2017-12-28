@@ -73,6 +73,8 @@ if(window.innerWidth < 500){
 if(window.innerHeight < 500){
 	background.height = 500;
 } else {background.height = window.innerHeight;}
+}
+
 function tailPiece(x, y, order) {
   this.x = x;
   this.y = y;
