@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 var c = document.getElementById('canvas'); //canvas html element
+var background = document.getElementById('background');
 var top = document.getElementById('top');
 var ctx = c.getContext('2d');
-var d = "left"; //direction
 var size = 20;
 var score = document.getElementById('score');
 var s = 0;
@@ -10,8 +10,10 @@ var snake = {
   x: c.width / 2,
   y: c.height / 2,
   d: "left",
+  nd: "null", //Next direction. Used if two inputs are put on the same tick.
   oldX: 0,
   oldY: 0,
+  input: false,
   tail: [],
   update: function() {
     snake.oldX = snake.x;
@@ -45,7 +47,7 @@ var snake = {
       snake.y = (c.height - 20);
     };
     console.log(snake.x + " " + snake.y)
-    //draw snake
+      //draw snake
     ctx.fillStyle = "#ff99e7";
     ctx.fillRect(snake.x, snake.y, size, size);
 
@@ -62,9 +64,11 @@ var snake = {
   }
 }
 
-function format(){
+function format() {
   top.style.paddingLeft = (window.innerWidth / 2 - c.width / 2 - 20) + "px"; //formatting
-  }
+  background.width = window.innerWidth;
+  background.height = window.innerHeight;
+}
 
 function tailPiece(x, y, order) {
   this.x = x;
@@ -82,8 +86,8 @@ function tailPiece(x, y, order) {
       this.x = snake.tail[(order - 1)].oldX;
       this.y = snake.tail[(order - 1)].oldY;
     }
-    if (this.x == snake.x && this.y == snake.y){
-    	snake.x = c.width / 2;
+    if (this.x == snake.x && this.y == snake.y) {
+      snake.x = c.width / 2;
       snake.y = c.height / 2;
       snake.tail = [];
       s = 0;
@@ -113,39 +117,81 @@ function gameLoop() {
       snake.tail[i].update();
     }
   }
-    fruit.update();
-  //update score
-  score.innerHTML = "Score: " + s;
+  fruit.update();
+  score.innerHTML = "Score: " + s;  //update score
+	if(snake.input && snake.nd != "null"){
+  	snake.d = snake.nd;
+    snake.nd = "null";
+    snake.input = false;
+	}else{
+		snake.input = false;
+	}
 }
-window.addEventListener('resize', function(){
-	format();
+window.addEventListener('resize', function() {
+  format();
 })
 document.addEventListener("keydown", function(event) {
-  switch (event.keyCode) {
-    case 37:
-      if (snake.d != "right") {
-        snake.d = "left";
-      }
-      break;
-    case 38:
-      if (snake.d != "down") {
-        snake.d = "up";
-      }
-      break;
-    case 39:
-      if (snake.d != "left") {
-        snake.d = "right";
-      }
-      break;
-    case 40:
-      if (snake.d != "up") {
-        snake.d = "down";
-      }
-      break;
-    default:
-      break;
+if(snake.input == false){
+    switch (event.keyCode) {
+      case 37:
+        if (snake.d != "right") {
+          snake.d = "left";
+          snake.input = true;
+        }
+        break;
+      case 38:
+        if (snake.d != "down") {
+          snake.d = "up";
+          snake.input = true;
+        }
+        break;
+      case 39:
+        if (snake.d != "left") {
+          snake.d = "right";
+          snake.input = true;
+        }
+        break;
+      case 40:
+        if (snake.d != "up") {
+          snake.d = "down";
+          snake.input = true;
+        }
+        break;
+      default:
+        break;
+    }
+  } else {
+      switch (event.keyCode) {
+      case 37:
+        if (snake.nd != "right") {
+          snake.nd = "left";
+          snake.input = true;
+        }
+        break;
+      case 38:
+        if (snake.nd != "down") {
+          snake.nd = "up";
+          snake.input = true;
+        }
+        break;
+      case 39:
+        if (snake.nd != "left") {
+          snake.nd = "right";
+          snake.input = true;
+        }
+        break;
+      case 40:
+        if (snake.nd != "up") {
+          snake.nd = "down";
+          snake.input = true;
+        }
+        break;
+      default:
+        break;
+    }
   }
 })
 format();
 setInterval(gameLoop, 125);
+
 }, false);
