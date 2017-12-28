@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
 var c = document.getElementById('canvas'); //canvas html element
-var background = document.getElementById('background');
 var top = document.getElementById('top');
 var ctx = c.getContext('2d');
 var d = "left"; //direction
@@ -65,8 +63,6 @@ var snake = {
 
 function format(){
   top.style.paddingLeft = (window.innerWidth / 2 - c.width / 2 - 20) + "px"; //formatting
-  background.width = window.innerWidth;
-  background.height = window.innerHeight;
   }
 
 function tailPiece(x, y, order) {
@@ -151,4 +147,3 @@ document.addEventListener("keydown", function(event) {
 })
 format();
 setInterval(gameLoop, 125);
-}, false);
