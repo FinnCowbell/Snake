@@ -67,10 +67,12 @@ var snake = {
 
 function format() {
   top.style.paddingLeft = (window.innerWidth / 2 - c.width / 2 - 20) + "px"; //formatting
-  background.width = window.innerWidth;
-  background.height = window.innerHeight;
-}
-
+if(window.innerWidth < 500){
+	background.width = 500;
+} else {background.width = window.innerWidth;}
+if(window.innerHeight < 500){
+	background.height = 500;
+} else {background.height = window.innerHeight;}
 function tailPiece(x, y, order) {
   this.x = x;
   this.y = y;
