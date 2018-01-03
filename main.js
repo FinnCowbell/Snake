@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 var c = document.getElementById('canvas'); //canvas html element
+var head = document.getElementById('head');
 var background = document.getElementById('background');
 var top = document.getElementById('top');
 var ctx = c.getContext('2d');
 var size = 20;
 var score = document.getElementById('score');
 var s = 0;
+var sColor = "#ff99e7";
+var fColor = "Tomato";
 var snake = {
   x: c.width / 2,
   y: c.height / 2,
@@ -48,14 +51,13 @@ var snake = {
     };
     console.log(snake.x + " " + snake.y)
       //draw snake
-    ctx.fillStyle = "#ff99e7";
+    ctx.fillStyle = sColor;
     ctx.fillRect(snake.x, snake.y, size, size);
 
     if (fruit.x == snake.x && fruit.y == snake.y) { //Checking if fruit is touched
       fruit.y = (Math.floor(Math.random() * c.height / size) * size);
       fruit.x = (Math.floor(Math.random() * c.width / size) * size);
       s++;
-      score.innerHTML = "<b> Score: " + s + "</b>";  //update score
       if (snake.tail.length == 0) {
         snake.tail.push(new tailPiece(snake.oldX, snake.oldY, s - 1))
       } else {
@@ -67,13 +69,9 @@ var snake = {
 
 function format() {
   top.style.paddingLeft = (window.innerWidth / 2 - c.width / 2 - 20) + "px"; //formatting
-if(window.innerWidth < 500){
-	background.width = 500;
-} else {background.width = window.innerWidth;}
-if(window.innerHeight < 500){
-	background.height = 500;
-} else {background.height = window.innerHeight;}
-}
+  background.width = window.innerWidth;
+  background.height = window.innerHeight;
+};
 
 function tailPiece(x, y, order) {
   this.x = x;
@@ -95,11 +93,13 @@ function tailPiece(x, y, order) {
       snake.x = c.width / 2;
       snake.y = c.height / 2;
       snake.tail = [];
+      background.style.background = "linear-gradient(to right, #ff99e7, #ffcef3)"
+      sColor = "#ff99e7";
+      fColor = "Tomato";
       s = 0;
       snake.d = "left";
-      score.innerHTML = "<b> Score: " + s + "</b>";  //update score
     }
-    ctx.fillStyle = "ff99e7";
+    ctx.fillStyle = sColor;
     ctx.fillRect(this.x, this.y, size, size);
   }
 }
@@ -109,7 +109,7 @@ var fruit = {
   x: (Math.floor(Math.random() * c.width / size) * size),
   y: (Math.floor(Math.random() * c.height / size) * size),
   update: function() {
-    ctx.fillStyle = "Tomato"; //Redraw Fruit
+    ctx.fillStyle = fColor; //Redraw Fruit
     ctx.fillRect(fruit.x + size / 4, fruit.y + size / 4, size / 2, size / 2);
   }
 }
@@ -124,14 +124,27 @@ function gameLoop() {
     }
   }
   fruit.update();
-	if(snake.input && snake.nd != "null"){
+  score.innerHTML = "Score: " + s;  //update score
+	if(snake.input && snake.nd != "null"){ // Allows user to buffer Directions
   	snake.d = snake.nd;
     snake.nd = "null";
     snake.input = false;
 	}else{
 		snake.input = false;
 	}
-}
+  if(s >= 10){
+    head.style.visibility = "visible";
+  } else {head.style.visibility = "hidden"}
+  if(s >= 20){
+    background.style.background = "linear-gradient(to right, #3379ea, #86aeef)"
+    sColor = "DodgerBlue";
+    fColor = "SlateBlue";
+  } else{
+    background.style.background = "linear-gradient(to right, #ff99e7, #ffcef3)"
+    sColor = "#ff99e7";
+    fColor = "Tomato";
+  }
+};
 window.addEventListener('resize', function() {
   format();
 })
