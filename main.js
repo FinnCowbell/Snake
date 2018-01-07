@@ -158,19 +158,19 @@ if(snake.input == false){
         }
         break;
       case 38:
-        if (snake.d != "down") {
+        if (snake.d != "down" && snake.nd != "up") {
           snake.d = "up";
           snake.input = true;
         }
         break;
       case 39:
-        if (snake.d != "left") {
+        if (snake.d != "left" && snake.nd != "up") {
           snake.d = "right";
           snake.input = true;
         }
         break;
       case 40:
-        if (snake.d != "up") {
+        if (snake.d != "up" && snake.nd != "up") {
           snake.d = "down";
           snake.input = true;
         }
