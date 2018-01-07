@@ -181,25 +181,25 @@ if(snake.input == false){
   } else {
       switch (event.keyCode) {
       case 37:
-        if (snake.nd != "right") {
+        if (snake.d != "right") {
           snake.nd = "left";
           snake.input = true;
         }
         break;
       case 38:
-        if (snake.nd != "down") {
+        if (snake.d != "down") {
           snake.nd = "up";
           snake.input = true;
         }
         break;
       case 39:
-        if (snake.nd != "left") {
+        if (snake.d != "left") {
           snake.nd = "right";
           snake.input = true;
         }
         break;
       case 40:
-        if (snake.nd != "up") {
+        if (snake.d != "up") {
           snake.nd = "down";
           snake.input = true;
         }
