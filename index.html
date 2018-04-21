@@ -4,10 +4,16 @@
     <title> Snakey </title>
     <link rel="stylesheet" href="style.css">
   </head>
+
   <body>
-    <div id="gameSpace" align=center>
-        <canvas id="canvas"">
-    </div>
+    <div id="background" style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+      <div id="gameSpace" align=center>
+        <div id="top" width="480px">
+          <h1 id="score" align=left width="520px">Score: </h1>
+        </div>
+        <canvas id="canvas" height="480px" width="520px"></canvas>
+      </div>
+      </div>
   </body>
   <script src="main.js"></script>
 </html>
