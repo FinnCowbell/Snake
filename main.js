@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 var c = document.getElementById('canvas'); //canvas html element
 var head = document.getElementById('head');
-var background = document.getElementById('background');
+var body = document.getElementById('body');
 var top = document.getElementById('top');
 var ctx = c.getContext('2d');
 var size = 20;
@@ -49,7 +49,6 @@ var snake = {
     if (snake.y < 0) {
       snake.y = (c.height - 20);
     };
-    console.log(snake.x + " " + snake.y)
       //draw snake
     ctx.fillStyle = sColor;
     ctx.fillRect(snake.x, snake.y, size, size);
@@ -66,12 +65,6 @@ var snake = {
     }
   }
 }
-
-function format() {
-  top.style.paddingLeft = (window.innerWidth / 2 - c.width / 2 - 20) + "px"; //formatting
-  background.width = window.innerWidth;
-  background.height = window.innerHeight;
-};
 
 function tailPiece(x, y, order) {
   this.x = x;
@@ -93,7 +86,7 @@ function tailPiece(x, y, order) {
       snake.x = c.width / 2;
       snake.y = c.height / 2;
       snake.tail = [];
-      background.style.background = "linear-gradient(to right, #ff99e7, #ffcef3)"
+      body.style.background = "linear-gradient(to right, #ff99e7, #ffcef3)"
       sColor = "#ff99e7";
       fColor = "Tomato";
       s = 0;
@@ -103,8 +96,6 @@ function tailPiece(x, y, order) {
     ctx.fillRect(this.x, this.y, size, size);
   }
 }
-
-
 var fruit = {
   x: (Math.floor(Math.random() * c.width / size) * size),
   y: (Math.floor(Math.random() * c.height / size) * size),
@@ -113,8 +104,6 @@ var fruit = {
     ctx.fillRect(fruit.x + size / 4, fruit.y + size / 4, size / 2, size / 2);
   }
 }
-
-
 function gameLoop() {
   ctx.clearRect(0, 0, c.width, c.height); //clear canvas
   snake.update();
@@ -136,18 +125,16 @@ function gameLoop() {
     head.style.visibility = "visible";
   } else {head.style.visibility = "hidden"}
   if(s >= 20){
-    background.style.background = "linear-gradient(to right, #3379ea, #86aeef)"
+    body.style.background = "linear-gradient(to right, #3379ea, #86aeef)"
     sColor = "DodgerBlue";
     fColor = "SlateBlue";
   } else{
-    background.style.background = "linear-gradient(to right, #ff99e7, #ffcef3)"
+    body.style.background = "linear-gradient(to right, #ff99e7, #ffcef3)"
     sColor = "#ff99e7";
     fColor = "Tomato";
   }
 };
-window.addEventListener('resize', function() {
-  format();
-})
+
 document.addEventListener("keydown", function(event) {
 if(snake.input == false){
     switch (event.keyCode) {
@@ -209,7 +196,6 @@ if(snake.input == false){
     }
   }
 })
-format();
 setInterval(gameLoop, 125);
 
 }, false);

@@ -3,23 +3,33 @@
       background-color: #CCCCFF;
     }
 
-    #background {
+    body {
       background: linear-gradient(to right, #ff99e7, #ffcef3);
     }
-
-    #top {
-      padding-left:
+    #gameSpace{
+      margin: auto;
+      width: 540px;
+      z-index: 1;
     }
-
     #score {
       font-family: "Comic Sans MS";
       font-size: 24px;
     }
-
-    #center {
-      background-color: blue;
-    }
     #head{
-      margin-left: 15%;
-      visibility: hidden;
+      position: fixed;
+      display: block;
+      top: 150px;
+      left:0;
+      right:0;
+      z-index: -1;
+      visibility: visible;
     }
+@media only screen and (max-width: 1050px){
+    #head{
+      position: relative;
+      margin: auto;
+      top: 20px;
+      height: 300px;
+      visibility: visible;
+    }
+}
